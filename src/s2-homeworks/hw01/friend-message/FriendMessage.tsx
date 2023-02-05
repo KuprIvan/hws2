@@ -1,8 +1,10 @@
 import React from 'react'
 import s from './FriendMessage.module.css'
+import {MessagePropsType} from '../message/Message';
 
 // создать тип вместо any и отобразить приходящие данные
-const FriendMessage = (props: any) => {
+
+const FriendMessage = (props: MessagePropsType) => {
     return (
         <div
             id={'hw1-friend-message-' + props.message.id}
@@ -10,37 +12,30 @@ const FriendMessage = (props: any) => {
         >
             <div className={s.friendImageAndText}>
                 <img
-                    id={'hw1-friend-avatar-' + props.message.id}
-                    // создаёт студент
-
-                    //
+                    id={'hw1-friend-avatar-' + props.message.user.avatar}
+                    alt="Avatar"
+                    src={props.message.user.avatar}
                 />
                 <div className={s.friendText}>
                     <div
-                        id={'hw1-friend-name-' + props.message.id}
+                        id={'hw1-friend-name-' + props.message.user.name}
                         className={s.friendName}
                     >
-                        {/*создаёт студент*/}
-
-                        {/**/}
+                        <p>{props.message.user.name}</p>
                     </div>
                     <pre
-                        id={'hw1-friend-text-' + props.message.id}
+                        id={'hw1-friend-text-' + props.message.message.text}
                         className={s.friendMessageText}
                     >
-                        {/*создаёт студент*/}
-
-                        {/**/}
+                       <p>{props.message.message.text}</p>
                     </pre>
                 </div>
             </div>
             <div
-                id={'hw1-friend-time-' + props.message.id}
+                id={'hw1-friend-time-' + props.message.message.time}
                 className={s.friendTime}
             >
-                {/*создаёт студент*/}
-
-                {/**/}
+                <p>{props.message.message.time}</p>
             </div>
         </div>
     )

@@ -3,9 +3,22 @@
 }
 
 .hw {
-
+    width: 100%;
+    margin: 0 auto;
 }
 
 .hwTitle {
+    font-size: 2rem;
+    line-height: 26px;
+    font-weight: 700;
+}
 
+.hw1 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
 }
