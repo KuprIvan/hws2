@@ -19,15 +19,15 @@ const Message = (props: MessagePropsType) => {
                     alt="avatar"
                 />
                 <div className={s.text}>
-                    <div id={'hw1-name-' + props.message.user.name} className={s.name}>
+                    <div id={'hw1-name-' + props.message.id} className={s.name}>
                         <p>{props.message.user.name}</p>
                     </div>
-                    <pre id={'hw1-text-' + props.message.message.text} className={s.messageText}>
+                    <pre id={'hw1-text-' + props.message.id} className={s.messageText}>
                         <p>{props.message.message.text}</p>
                     </pre>
                 </div>
             </div>
-            <div id={'hw1-time-' + props.message.message.time} className={s.time}>
+            <div id={'hw1-time-' + props.message.id} className={s.time}>
                <p>{props.message.message.time}</p>
             </div>
         </div>
