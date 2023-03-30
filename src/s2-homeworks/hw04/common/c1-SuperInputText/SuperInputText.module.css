@@ -1,7 +1,12 @@
 .input:focus {
+    border: 1px solid #000;
 }
 
 .input {
+    width: 250px;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
 }
 
 .inputWrapper {
@@ -11,10 +16,15 @@
 }
 
 .errorInput {
+    border: 1px solid #F00;
 }
 
 .errorInput:focus {
+    border: 1px solid #F00;
 }
 
 .error {
+    display: block;
+    color: #F00;
+    font-size: 12px;
 }
