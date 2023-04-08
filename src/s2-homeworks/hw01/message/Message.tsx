@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import s from './Message.module.css'
 import {MessageType} from '../HW1';
 
@@ -9,26 +9,26 @@ export type MessagePropsType = {
 }
 
 // нужно отобразить приходящие данные
-const Message = (props: MessagePropsType) => {
+const Message: FC<MessagePropsType> = ({ message} ) => {
     return (
-        <div id={'hw1-message-' + props.message.id} className={s.message}>
+        <div id={'hw1-message-' + message.id} className={s.message}>
             <div className={s.imageAndText}>
                 <img
-                    id={'hw1-avatar-' + props.message.id}
-                    src={props.message.user.avatar}
+                    id={'hw1-avatar-' + message.id}
+                    src={message.user.avatar}
                     alt="avatar"
                 />
                 <div className={s.text}>
-                    <div id={'hw1-name-' + props.message.id} className={s.name}>
-                        <p>{props.message.user.name}</p>
+                    <div id={'hw1-name-' + message.id} className={s.name}>
+                        <p>{message.user.name}</p>
                     </div>
-                    <pre id={'hw1-text-' + props.message.id} className={s.messageText}>
-                        <p>{props.message.message.text}</p>
+                    <pre id={'hw1-text-' + message.id} className={s.messageText}>
+                        <p>{message.message.text}</p>
                     </pre>
                 </div>
             </div>
-            <div id={'hw1-time-' + props.message.id} className={s.time}>
-               <p>{props.message.message.time}</p>
+            <div id={'hw1-time-' + message.id} className={s.time}>
+               <p>{message.message.time}</p>
             </div>
         </div>
     )
