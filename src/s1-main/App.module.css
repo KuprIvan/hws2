@@ -11,6 +11,10 @@
     border-bottom: 1px solid #d3d3d3;
     border-top: 1px solid #d3d3d3;
 }
+.hw_editable {
+    max-width: 350px;
+    padding: 50px;
+}
 
 .hwTitle {
     font-size: 2rem;
