@@ -2,7 +2,7 @@ import React, {
     DetailedHTMLProps,
     InputHTMLAttributes,
     HTMLAttributes,
-    useState,
+    useState, KeyboardEvent,
 } from 'react'
 import s from './SuperEditableSpan.module.css'
 import SuperInputText from '../../../hw04/common/c1-SuperInputText/SuperInputText'
@@ -20,13 +20,13 @@ type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>,
 type SuperEditableSpanType = Omit<DefaultInputPropsType, 'type'> & {
     // и + ещё пропсы которых нет в стандартном инпуте
     onChangeText?: (value: string) => void
-    onEnter?: () => void
+    onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
     error?: string
 
     spanProps?: DefaultSpanPropsType  & {defaultText?: string}// пропсы для спана
 }
 
-const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
+export const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
     {
         autoFocus,
         onBlur,
@@ -40,21 +40,21 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
     const {children, onDoubleClick, className, defaultText, ...restSpanProps} =
     spanProps || {}
 
-    const onEnterCallback = () => {
-        // выключить editMode при нажатии Enter // делают студенты
-
-        onEnter?.()
+    const onEnterCallback = (e: KeyboardEvent<HTMLInputElement>) => {
+        onEnter &&  // если есть пропс onEnter
+        e.key === 'Enter' && // и если нажата кнопка Enter
+        onEnter(e) // то вызвать его
     }
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
         // выключить editMode при нажатии за пределами инпута // делают студенты
-
+        setEditMode(!editMode)
         onBlur?.(e)
     }
     const onDoubleClickCallBack = (
         e: React.MouseEvent<HTMLSpanElement, MouseEvent>
     ) => {
         // включить editMode при двойном клике // делают студенты
-
+        setEditMode(!editMode)
         onDoubleClick?.(e)
     }
 
@@ -93,4 +93,3 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
     )
 }
 
-export default SuperEditableSpan
