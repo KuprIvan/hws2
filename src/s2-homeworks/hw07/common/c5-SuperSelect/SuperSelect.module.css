@@ -1,4 +1,10 @@
 .select {
+    display: flex;
+    justify-content: space-between;
+    min-width: 160px;
+    max-width: 300px;
+    padding: 5px;
+    color: #000;
 }
 
 .select:focus {
@@ -6,4 +12,5 @@
 
 
 .option:hover {
+
 }

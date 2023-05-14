@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {SuperEditableSpan} from './common/c4-SuperEditableSpan/SuperEditableSpan'
 import {restoreState, saveState} from './localStorage/localStorage'
 import s2 from '../../s1-main/App.module.css'
@@ -21,16 +21,6 @@ const HW6 = () => {
         let state = restoreState('hw6-editable-span-value', value)
         setValue(state)
     }
-
-    /*useEffect(() => {
-        if (value) {
-            save()
-        }
-    }, [value])
-
-    useEffect(() => {
-        restore()
-    }, [])*/
 
     return (
         <div id={'hw6'}>
