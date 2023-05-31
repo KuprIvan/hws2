@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
 import {restoreState} from '../hw06/localStorage/localStorage'
 import s from './Clock.module.css'
@@ -9,6 +9,11 @@ function Clock() {
     const [date, setDate] = useState<Date>(new Date(restoreState('hw9-date', Date.now())))
     const [show, setShow] = useState<boolean>(false)
 
+
+    useEffect(() => {
+        localStorage.setItem("currentTime", date.toString());
+    }, [])
+
     const start = () => {
         stop()
         let timerID = setInterval(() => {
@@ -17,12 +22,18 @@ function Clock() {
         setTimerId(+timerID)
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
+        const dateFromLocalStorage = localStorage.getItem("currentTime")
 
+        if (dateFromLocalStorage !== null) {
+            setDate(new Date(dateFromLocalStorage));
+        }
     }
 
     const stop = () => {
         clearInterval(timerId)
         setTimerId(undefined)
+
+        localStorage.setItem("currentTime", date.toString());
         // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
 
     }
@@ -55,11 +66,11 @@ function Clock() {
     });
 
     const stringTime = formatter.format(date) || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = monthFormatter.format(date) || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const stringDate = dateFormatter.format(date) || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
     const stringDay = dayFormatter.format(date) || <br/> // пишут студенты
-    const stringMonth = dateFormatter.format(date) || <br/> // пишут студенты
+    const stringMonth = monthFormatter.format(date) || <br/> // пишут студенты
 
     return (
         <div className={s.clock}>
